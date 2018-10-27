@@ -1,4 +1,4 @@
-var fun1 = function(string) {
+var funсt = function(string) {
     var x = string.split('');
     var y=0;
     var str ='';

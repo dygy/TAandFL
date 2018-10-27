@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-public class Lexer {
+class Lexer {
 
-    public static void goJS( ) throws FileNotFoundException, ScriptException, NoSuchMethodException {
+    static void goJS() throws FileNotFoundException, ScriptException, NoSuchMethodException {
 
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval(new
@@ -21,7 +21,7 @@ public class Lexer {
 
         Invocable invocable = (Invocable) engine;
 
-        Object result = invocable.invokeFunction("fun1", Main.string);
+        Object result = invocable.invokeFunction("funct", Main.string);
        // System.out.println(result);
     }
 }

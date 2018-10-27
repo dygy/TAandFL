@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    public static String string = scanner.next();
+    static String string = scanner.next();
     private static List<String> list = new ArrayList<>();
     private static boolean br = false;
 
