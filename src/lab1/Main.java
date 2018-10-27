@@ -1,4 +1,7 @@
 package lab1;
+
+import javax.script.ScriptException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.regex.* ;
 import java.util.Scanner;
@@ -7,26 +10,27 @@ import java.util.List;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static String string = scanner.next();
+    public static String string = scanner.next();
     private static List<String> list = new ArrayList<>();
     private static boolean br = false;
-    public static void main (String[] args) {
+
+    public static void main (String[] args) throws NoSuchMethodException, ScriptException, IOException {
         splitToList(string);
 
-            boolean NotBrEx = checkWithRegExp(string);
+        boolean NotBrEx = checkWithRegExp(string);
         if (!br) {
             if (!NotBrEx){
                 System.out.println("The regular expression didn't recognize needed input!");
             }
-            if (NotBrEx) {
-               System.out.println(true);
-                // System.out.println(string.substring(string.lastIndexOf(";") + 1));
-
+            if (NotBrEx){
+                Lexer.goJS();
             }
         }
     }
     private static boolean checkWithRegExp(String string){
-        Pattern lab1 = Pattern.compile("^(([\"(\"])*(\\d+)([\",\"](\\d+))*(?:([-+*\\/])*((?:[-+])?([\"(\"])*\\d+)([\",\"](\\d+))*)+([\")\"])*(=)(\\d+)([\",\"](\\d+))*(;))+");
+        Pattern lab1 = Pattern.compile("^(([\"(\"])*(\\d+)([\",\"](\\d+))*([\")\"])*(?:([-+*\\/])" +
+                "*([\")\"])*((?:[-+])?([\"(\"])*\\d+)" +
+                "([\",\"](\\d+))*)+([\")\"])*(=)(\\d+)([\",\"](\\d+))*(;))+");
         Matcher m = lab1.matcher(string);
         return m.matches();
     }
@@ -37,7 +41,6 @@ public class Main {
         chekList(list);
     }
     private static void chekList (List list){
-      //  List<String> list2 = new ArrayList<>();
 
         int open = 0;
         int close =0;

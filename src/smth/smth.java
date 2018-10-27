@@ -1,4 +1,4 @@
-package lab1;
+package smth;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class smth {
