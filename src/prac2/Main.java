@@ -48,15 +48,4 @@ public class Main {
         }
     }
 
-    private static boolean checkWithRegExp(String string) {
-        final String regex = "(W*((?i)while(?-i))\\W*(W*((?i)true(?-i))\\W*|W*((?i)false(?-i))\\W*|\\w+[>,<,=]\\S+)[;].+(\\n.+)*\\nW*((?i)done(?-i)))";
-
-        Pattern prac2 = Pattern.compile(regex);
-        Matcher m = prac2.matcher(string);
-        return m.matches();
-    }
-    private static void splitToList(String string){
-
-        list.addAll(Arrays.asList(string.split("")));
-    }
 }
