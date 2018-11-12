@@ -16,9 +16,9 @@ public class Main {
 
     public static void main (String[] args) throws NoSuchMethodException, ScriptException, IOException {
         splitToList(string);
-
-        boolean NotBrEx = checkWithRegExp(string);
         if (!br) {
+            boolean NotBrEx = checkWithRegExp(string);
+
             if (!NotBrEx){
                 System.out.println("The regular expression didn't recognize needed input!");
             }
