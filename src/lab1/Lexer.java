@@ -17,11 +17,11 @@ class Lexer {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval(new
 
-                FileReader("C:\\Users\\yukim\\IdeaProjects\\TAandFL\\src\\lab1\\js.js"));
+                FileReader("C:\\Users\\dygy\\IdeaProjects\\TAandFL\\src\\lab1\\js.js"));
 
         Invocable invocable = (Invocable) engine;
 
-        Object result = invocable.invokeFunction("funct", Main.string);
+        Object result = invocable.invokeFunction("fun", Main.string);
        // System.out.println(result);
     }
 }
