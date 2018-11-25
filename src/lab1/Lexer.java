@@ -17,7 +17,7 @@ class Lexer {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval(new
 
-                FileReader("C:\\Users\\dygy\\IdeaProjects\\TAandFL\\src\\lab1\\js.js"));
+                FileReader("C:\\Users\\yukim\\IdeaProjects\\TAandFL\\src\\lab1\\js.js"));
 
         Invocable invocable = (Invocable) engine;
 
