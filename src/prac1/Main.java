@@ -2,8 +2,8 @@ package prac1;
 
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+        import java.util.regex.Matcher;
+        import java.util.regex.Pattern;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);

@@ -23,7 +23,7 @@ public class Main {
 
     private static boolean checkWithRegExp(String string) {
 
-        Pattern prac3 = Pattern.compile("^([-+]?)(\\d+)(?:([-+*/])(\\d+))+$");
+        Pattern prac3 = Pattern.compile("^([-]?)(\\d+)(?:([-+*/])(\\d+))+$");
         Matcher m = prac3.matcher(string);
         return m.matches();
     }

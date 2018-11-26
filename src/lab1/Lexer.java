@@ -21,7 +21,7 @@ class Lexer {
 
         Invocable invocable = (Invocable) engine;
 
-        Object result = invocable.invokeFunction("fun", Main.string);
+        Object result = invocable.invokeFunction("funс", Main.string);
        // System.out.println(result);
     }
 }

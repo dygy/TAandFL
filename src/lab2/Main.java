@@ -55,31 +55,30 @@ public class Main {
                     if (i == 1) {
                         System.out.println("Number " + ": " + matcher.group(i));
                         list.add(matcher.group(i));
+                        forTree.add(matcher.group(i));
                     }
                     if (i == 2) {
                         System.out.println("Sub " + ": " + matcher.group(i));
                         list.add(matcher.group(i));
-                        forTree.add(list.get(i - 1));
-                        forTree.add(list.get(i));
-                        forTree.add(list.get(i+ 1));
+                        forTree.add(matcher.group(i));
 
                     }
                     if (i == 3) {
                         System.out.println("Plus " + ": " + matcher.group(i));
                         list.add(matcher.group(i));
-                        forTree.add(list.get(i - 1));
-                        forTree.add(list.get(i));
-                        forTree.add(list.get(i + 1));
+                        forTree.add(matcher.group(i));
                     }
                     if (i == 4) {
                         list.add(matcher.group(i));
                         atFirst.add(list.lastIndexOf(matcher.group(i)));
+                        forTree.add(matcher.group(i));
 
                     }
                     if (i == 5) {
                         System.out.println("Divide" + ": " + matcher.group(i));
                         list.add(matcher.group(i));
                         atFirst.add(list.lastIndexOf(matcher.group(i)));
+                        forTree.add(matcher.group(i));
 
                     }
 
@@ -95,9 +94,6 @@ public class Main {
             int result = Integer.parseInt(list.get(1)) * -1;
 
             for (int z = 0; z < atFirst.size(); z++) {
-                forTree.add(list.get(atFirst.get(z) - 1));
-                forTree.add(list.get(atFirst.get(z)));
-                forTree.add(list.get(atFirst.get(z) + 1));
                 if (list.get(atFirst.get(z)).equals("*")) {
                     list.set(atFirst.get(z) + 1, String.valueOf(
                             Integer.parseInt(
@@ -158,9 +154,7 @@ public class Main {
             int result = Integer.parseInt(list.get(0));
             for (int z = 0; z < atFirst.size(); z++) {
                 if (list.get(atFirst.get(z)).equals("*")) {
-                    forTree.add(list.get(atFirst.get(z) - 1));
-                    forTree.add(list.get(atFirst.get(z)));
-                    forTree.add(list.get(atFirst.get(z) + 1));
+
                     list.set(atFirst.get(z) + 1, String.valueOf(
                             Integer.parseInt(
                                     list.get(atFirst.get(z) - 1)) *
@@ -175,9 +169,7 @@ public class Main {
 
                 }
                 if (list.get(atFirst.get(z)).equals("/")) {
-                    forTree.add(list.get(atFirst.get(z) - 1));
-                    forTree.add(list.get(atFirst.get(z)));
-                    forTree.add(list.get(atFirst.get(z) + 1));
+
 
                     list.set(atFirst.get(z) + 1, String.valueOf(
                             Integer.parseInt(list.get(atFirst.get(z) - 1)
@@ -229,34 +221,30 @@ public class Main {
         boolean br = false;
         System.out.println(forTree);
         for (int x = 0; x < forTree.size(); x++) {
-            if (br) {
-                if (x != forTree.size() - 1) {
-                    if (forTree.get(x).equals(forTree.get(x + 1))) {
-                        forTree.remove(x+1);
-                    }
+            if(forTree.get(x).equals("*")||forTree.get(x).equals("/")){
+                int z = String.valueOf(forTree.get(x-1)).length();
+                while (z>0) {
+                    System.out.print(" ");
+                    z=z-1;
                 }
-
-            } else {
-                if (forTree.get(x).equals(forTree.get(x + 1))) {
-                    forTree.remove(x+1);
-                }
-                if (forTree.get(x).equals(forTree.get(x + 2))) {
-                    forTree.remove(x+2);
-                }
-                if (forTree.get(x).equals(forTree.get(x + 3))) {
-                    forTree.remove(x+3);
-                }
-
-                    if (forTree.get(x).equals("+") || forTree.get(x).equals("-")) {
-                        br = true;
-                    }
-
-                }
+                System.out.println(forTree.get(x));
+                System.out.print(forTree.get(x-1)+" "+forTree.get(x+1)+" ");
+                System.out.println();
             }
 
+            }
+        for (int x = 0; x < forTree.size(); x++) {
+            if(forTree.get(x).equals("-")&&x!=0||forTree.get(x).equals("+")){
+                int z = String.valueOf(forTree.get(x-1)).length();
+                while (z>0) {
+                    System.out.print(" ");
+                    z=z-1;
+                }
+                System.out.println(forTree.get(x));
+                System.out.print(forTree.get(x-1)+" "+forTree.get(x+1)+" ");
+                System.out.println();
+            }
 
-        System.out.println(forTree);
-        //TODO : understand tree problems
-        //lMAO
+        }
     }
 }

@@ -28,9 +28,7 @@ public class Main {
         }
     }
     private static boolean checkWithRegExp(String string){
-        Pattern lab1 = Pattern.compile("^(([\"(\"])*(\\d+)([\",\"](\\d+))*([\")\"])*(?:([-+*\\/])" +
-                "*([\")\"])*((?:[-+])?([\"(\"])*\\d+)" +
-                "([\",\"](\\d+))*)+([\")\"])*(=)(\\d+)([\",\"](\\d+))*(;))+");
+        Pattern lab1 = Pattern.compile("^([(])*((?:[-]?)\\d+([,]\\d+)?)([)])*(?:([-+*\\/])([(])*((?:[-]?)\\d+(?:[,]\\d+)?)([)])*)+[=]((?:[-]?)\\d+(?:[,]\\d+)?)[;]$");
         Matcher m = lab1.matcher(string);
         return m.matches();
     }
