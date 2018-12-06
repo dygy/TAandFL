@@ -1,11 +1,14 @@
 package prac2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 
 public class Main {
+    private static List<String> list = new ArrayList<>();
     static boolean isFine;
     static final String string = "   \n"
             + "   print x;\n"
@@ -31,9 +34,9 @@ public class Main {
         System.out.println(string);
 
         boolean isEx = checkWithRegExp(string);
-            if (isEx){
+        if (isEx){
 //                lexerRegEx(string);
-            }
+        }
 
     }
 
@@ -50,10 +53,10 @@ public class Main {
             for (int i = 1; i <= matcher4.groupCount(); i++) {
                 if (matcher4.group(i) != null) {
                     if (i == 1) {
-                        System.out.println("operation " + ": " + matcher4.group(i));
+                        System.out.println("cout " + ": " + matcher4.group(i));
                     }
                     if (i == 2) {
-                        System.out.println("cout " + ": " + matcher4.group(i));
+                        System.out.println("calc " + ": " + matcher4.group(i));
                     }
 
                 }
@@ -71,6 +74,7 @@ public class Main {
                 if (matcher.group(i) != null) {
                     if (i == 1) {
                         System.out.println("opening " + ": " + matcher.group(i));
+            //            list.add()
                     }
                     if (i == 2) {
                         System.out.println("statement " + ": " + matcher.group(i));
@@ -83,7 +87,7 @@ public class Main {
                         System.out.println("start " + ": " + matcher.group(i));
                     }
                     if (i == 5 ) {
-                       newString = newString + matcher.group(i);
+                        newString = newString + matcher.group(i);
                     }
 
                     if (i == 6) {
@@ -106,7 +110,7 @@ public class Main {
 
             chekAgain(newString);
         }
-       else {
+        else {
             final String newOneRegex = "\\s*(print\\s+[a-z]*[;])*\\s*([a-z]*(?:[-]|[+]){2}[;])*\\s*";
             Pattern prac2Ther = Pattern.compile(newOneRegex, Pattern.MULTILINE);
             Matcher matcher3 = prac2Ther.matcher(newString);
@@ -125,7 +129,7 @@ public class Main {
             }
         }
 
-     return isFine;
+        return isFine;
     }
     private static void chekAgain (String string) {
         final String regex = "\\s*(while)\\s+(true\\s*|\\s*false\\s*|(?:\\w+\\s*[><=]\\s*([a-zA-Z]+|\\d+)))\\s+(do)\\s*(.+|\\n*(?:\\n.*|\\s*)*\\n)\\s*(done)([;])";
@@ -140,10 +144,10 @@ public class Main {
             for (int i = 1; i <= matcher4.groupCount(); i++) {
                 if (matcher4.group(i) != null) {
                     if (i == 1) {
-                        System.out.println("operation " + ": " + matcher4.group(i));
+                        System.out.println("cout " + ": " + matcher4.group(i));
                     }
                     if (i == 2) {
-                        System.out.println("cout " + ": " + matcher4.group(i));
+                        System.out.println("calc " + ": " + matcher4.group(i));
                     }
 
                 }
@@ -159,33 +163,28 @@ public class Main {
                 }
 
                 if (matcher.group(i) != null) {
+
                     if (i == 1) {
-                        System.out.println("operation " + ": " + matcher.group(i));
-                    }
-                    if (i == 2) {
-                        System.out.println("cout " + ": " + matcher.group(i));
-                    }
-                    if (i == 3) {
                         System.out.println("opening " + ": " + matcher.group(i));
                     }
-                    if (i == 4) {
+                    if (i == 2) {
                         System.out.println("statement " + ": " + matcher.group(i));
                     }
-                    if (i == 5) {
+                    if (i == 3) {
                         System.out.println("expression " + ": " + matcher.group(i));
                     }
 
-                    if (i == 6) {
+                    if (i == 4) {
                         System.out.println("start " + ": " + matcher.group(i));
                     }
-                    if (i == 7) {
+                    if (i == 5) {
                         newString = newString + matcher.group(i);
                     }
 
-                    if (i == 8) {
+                    if (i == 6) {
                         System.out.println("closing" + ": " + matcher.group(i));
                     }
-                    if (i == 9) {
+                    if (i == 7) {
                         System.out.println("separator " + ": " + matcher.group(i));
                     }
 
@@ -216,33 +215,42 @@ public class Main {
         }
         isFine = matcher.matches();
     }
-    private static void lexerRegEx (String string){
-        final String regex = "(\\d+)|(\\-)|(\\+)|(\\*)|(\\/)";
 
+    public static boolean countInside (){
+        int opening=0;
+        int close=0;
+        int start=0;
+        int statement=0;
+        int separator=0;
+        System.out.println(list);
+        for (int i =0;i<list.size();i++) {
 
-        final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
-        final Matcher matcher = pattern.matcher(string);
+            if (list.get(i).equals("opening")){
+                opening++;
 
-        while (matcher.find()) {
-            for (int i = 1; i <= matcher.groupCount(); i++) {
-                if (matcher.group(i)!=null) {
-                    if (i == 1) {
-                        System.out.println("Number " + ": " + matcher.group(i));
-                    }
-                    if (i == 2) {
-                        System.out.println("Sub " + ": " + matcher.group(i));
-                    }
-                    if (i == 3) {
-                        System.out.println("Plus " + ": " + matcher.group(i));
-                    }
-                    if (i == 4) {
-                        System.out.println("Multiplication" + ": " + matcher.group(i));
-                    }
-                    if (i == 5) {
-                        System.out.println("Divide" + ": " + matcher.group(i));
-                    }
-                }
             }
+            if (list.get(i).equals("closing")){
+                close++;
+
+            }
+            if (list.get(i).equals("start")){
+                start++;
+
+            }
+            if (list.get(i).equals("statement")){
+                statement++;
+
+            }
+            if (list.get(i).equals("separator")){
+                separator++;
+
+            }
+
+
         }
+
+        return separator == statement && start == statement &&
+                opening == start && opening == close;
     }
+
 }
