@@ -6,7 +6,7 @@ public class Parser {
 
     private List<Token> tokens;
 
-    static void parser(List<Token> tokens) {
+    static BaseStatement parser(List<Token> tokens) {
         int open=0;
         int start = 0;
         int end=0;
@@ -49,6 +49,7 @@ public class Parser {
 
                             System.out.println("One loop are successfully checked!" +tokens.get(x+3).type);
                          //   WhileNode.WhileNode(tokens.get(x+1),tokens.get(x+2),tokens.get(x+3));
+                            return new WhileNode(tokens.get(x+1),tokens.get(x+2),tokens.get(x+3));
 
                         }
 
@@ -69,6 +70,7 @@ public class Parser {
                 if (tokens.get(x+1).type.equals(TokenType.IDENT)) {
                     if (tokens.get(x+2).type.equals(TokenType.END)) {
              //           PrintNode.printNode(tokens.get(x + 1));
+                        return new PrintNode(tokens.get(x+1));
                     }
                     else error("Print operation suppose to end with ;");
                 }
@@ -79,6 +81,7 @@ public class Parser {
                 if (tokens.get(x - 1).type.equals(TokenType.IDENT)) {
                     if (tokens.get(x + 1).type.equals(TokenType.END)) {
                 //        IncDecNode.IncDecNode(tokens.get(x - 1), tokens.get(x));
+                        return new IncDecNode(tokens.get(x-1), tokens.get(x));
                     }
                     else error("DEC operation suppose to end with ;");
 
@@ -89,6 +92,7 @@ public class Parser {
                 if (tokens.get(x-1).type.equals(TokenType.IDENT)) {
                     if (tokens.get(x+1).type.equals(TokenType.END)) {
                  //       IncDecNode.IncDecNode(tokens.get(x-1),tokens.get(x));
+                        return new IncDecNode(tokens.get(x-1),tokens.get(x));
                     }
                     else error("INC operation suppose to end with ;");
                 }
@@ -111,6 +115,7 @@ public class Parser {
             System.out.println("All loops was gated successful!");
         }
 
+        return null;
     }
 
     // program : loop+;
