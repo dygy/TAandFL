@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 public class Lexer {
 
     private static TokenType toType(int i) {
@@ -25,13 +24,13 @@ public class Lexer {
             case 16: return TokenType.DEC;
             case 15: return TokenType.INC;
             case 11: return TokenType.END;
-
+            case 17: Parser.error("Imposible to understand what you want to do with IDENT");
         }
         throw new IllegalStateException();
     }
     List<Token> split(String text) {
 
-        final String regex = "(while)|(done)|(do)|(?:(?:(\\d+)|([a-z]+))\\s*(?:([>])|([<])|([=]))\\s*(?:(\\d+)|([a-z])+))|([;])|(?:(print)\\s*([a-z]*))|([a-z]*)(?:([+]{2})|([-]{2}))";
+        final String regex = "(while)|(done)|(do)|(?:(?:(\\d+)|([a-z]+))\\s*(?:([>])|([<])|([=]))\\s*(?:(\\d+)|([a-z])+))|([;])|(?:(print)\\s*([a-z]*))|([a-z]*)(?:([+]{2})|([-]{2})|([a-z]+))";
         List<Token> list = new ArrayList<>();
         final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(text);
@@ -49,20 +48,22 @@ public class Lexer {
 
     public static void main(String[] args) {
         String text =
-                "while x > 3 do\n" +
+                "while x < 5 do\n" +
                 "   print x;\n" +
-                "   x--;\n" +
+                "   x++;\n" +
                 "   while 3 > x do\n" +
                 "      print y;\n" +
                 "      y--;\n" +
                 "   done;\n" +
                 "done;\n" +
-                "while x > 1 do\n" +
+                "while x > y do\n" +
                 "  x--;\n" +
                 "done;";
         List<Token> tokens = new Lexer().split(text);
         for (Token token : tokens) {
-            System.out.println(token.type + ": " + token.text);
+           System.out.println(token.type + ": " + token.text);
+
         }
+        Parser.parser(tokens);
     }
 }
