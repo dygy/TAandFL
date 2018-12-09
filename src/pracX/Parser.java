@@ -13,6 +13,11 @@ public class Parser {
 
         for (int x = 0;x<tokens.size();x++){
             if (tokens.get(x).type.equals(TokenType.IDENT)){
+                if (tokens.get(tokens.size()-1).type.equals(TokenType.END)){
+
+                }
+                else Parser.error("Program must over with ;");
+
                 if (tokens.get(x).text.equals("x")||tokens.get(x).text.equals("y")){
 
                 }
