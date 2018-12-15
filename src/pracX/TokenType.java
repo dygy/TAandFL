@@ -1,7 +1,5 @@
 package pracX;
 
-import java.util.regex.Pattern;
-
 public enum TokenType {
     WHILE,
     DO,

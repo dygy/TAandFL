@@ -1,11 +1,14 @@
 package pracX;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
 
     private List<Token> tokens;
-
+    private static List<Token> loops = new ArrayList<>();
+    private static List<BaseStatement> operations = new ArrayList<>();
     static BaseStatement parser(List<Token> tokens) {
         int open=0;
         int start = 0;
@@ -31,6 +34,15 @@ public class Parser {
                 end++;
                 if (x+1<tokens.size()) {
                     if (tokens.get(x + 1).type.equals(TokenType.END)) {
+                        //
+                      //  new WhileNode(loops.get(loops.size()-3),loops.get(loops.size()-2),loops.get(loops.size()-1),Arrays.asList(
+                               // for(int z=0;z<operations.size();z++) {
+                                    //TODO: хочу вызвать только те стейтменты, опен которых совпадает с опеном while
+                                //    if (operations.indexOf(z)==open){
+                                //        return operations.get(z);
+                                //    }
+                               // }
+                       // ));
 
                     }
                     else error("Done must over with ;");
@@ -49,8 +61,10 @@ public class Parser {
 
                             System.out.println("One loop are successfully checked!" +tokens.get(x+3).type);
                          //   WhileNode.WhileNode(tokens.get(x+1),tokens.get(x+2),tokens.get(x+3));
-                            return new WhileNode(tokens.get(x+1),tokens.get(x+2),tokens.get(x+3));
-
+                         //   return new WhileNode(tokens.get(x+1),tokens.get(x+2),tokens.get(x+3));
+                            loops.add(tokens.get(x+1));
+                            loops.add(tokens.get(x+2));
+                            loops.add(tokens.get(x+3));
                         }
 
                         else error("While suppose to have IDENT or NUMBER in condition after operation");
@@ -70,7 +84,7 @@ public class Parser {
                 if (tokens.get(x+1).type.equals(TokenType.IDENT)) {
                     if (tokens.get(x+2).type.equals(TokenType.END)) {
              //           PrintNode.printNode(tokens.get(x + 1));
-                        return new PrintNode(tokens.get(x+1));
+                        operations.add(new PrintNode(tokens.get(x+1),open));
                     }
                     else error("Print operation suppose to end with ;");
                 }
@@ -81,7 +95,7 @@ public class Parser {
                 if (tokens.get(x - 1).type.equals(TokenType.IDENT)) {
                     if (tokens.get(x + 1).type.equals(TokenType.END)) {
                 //        IncDecNode.IncDecNode(tokens.get(x - 1), tokens.get(x));
-                        return new IncDecNode(tokens.get(x-1), tokens.get(x));
+                        operations.add( new IncDecNode(tokens.get(x-1), tokens.get(x),open));
                     }
                     else error("DEC operation suppose to end with ;");
 
@@ -92,7 +106,7 @@ public class Parser {
                 if (tokens.get(x-1).type.equals(TokenType.IDENT)) {
                     if (tokens.get(x+1).type.equals(TokenType.END)) {
                  //       IncDecNode.IncDecNode(tokens.get(x-1),tokens.get(x));
-                        return new IncDecNode(tokens.get(x-1),tokens.get(x));
+                        operations.add( new IncDecNode(tokens.get(x-1), tokens.get(x),open));
                     }
                     else error("INC operation suppose to end with ;");
                 }
@@ -113,6 +127,7 @@ public class Parser {
         }
         else{
             System.out.println("All loops was gated successful!");
+            System.out.println();
         }
 
         return null;
