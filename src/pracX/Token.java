@@ -2,7 +2,7 @@ package pracX;
 
 public class Token {
     String text;
-    TokenType type;
+    public TokenType type;
 
     public Token(String text, TokenType type) {
         this.text = text;

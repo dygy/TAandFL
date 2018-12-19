@@ -64,6 +64,6 @@ public class Lexer {
            System.out.println(token.type + ": " + token.text);
 
         }
-        Parser.parser(tokens);
+        Parser2.statement();
     }
 }
