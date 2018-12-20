@@ -83,15 +83,11 @@ public class Parser2 {
     }
     static boolean hasStatement(){
 
-        if (match(TokenType.PRINT) != null) {
-        return true;
-
-        } else if (match(TokenType.WHILE) != null) {
-            return true;
-        } else if ((match(TokenType.IDENT)) != null) {
-            return true;
+        if (match(TokenType.DONE) != null) {
+            return false;
         }
-        else return false;
+
+        else return true;
     }
 
    static BaseStatement statement() {
@@ -117,6 +113,9 @@ public class Parser2 {
                 return new IncDecNode(ident, op, 0);
             } else {
                 error("Expected ++ or --");
+            }
+            if ((match(TokenType.END)) != null){
+
             }
         } else {
             // Оператор должен начинаться с print, while или идентификатора:

@@ -64,6 +64,8 @@ public class Lexer {
            System.out.println(token.type + ": " + token.text);
 
         }
+        Parser2 parser2 = new Parser2(tokens);
+        List<BaseStatement> program = parser2.program();
         Parser2.statement();
     }
 }
