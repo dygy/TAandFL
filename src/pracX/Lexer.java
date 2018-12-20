@@ -49,16 +49,16 @@ public class Lexer {
     public static void main(String[] args) {
         String text =
                 "while x < 5 do\n" +
-                "   print x;\n" +
-                "   x++;\n" +
+                "   print x\n" +
+                "   x++\n" +
                 "   while 3 > x do\n" +
-                "      print y;\n" +
-                "      y--;\n" +
-                "   done;\n" +
-                "done;\n" +
+                "      print y\n" +
+                "      y--\n" +
+                "   done\n" +
+                "done\n" +
                 "while x > y do\n" +
-                "  x--;\n" +
-                "done;";
+                "  x--\n" +
+                "done";
         List<Token> tokens = new Lexer().split(text);
         for (Token token : tokens) {
            System.out.println(token.type + ": " + token.text);

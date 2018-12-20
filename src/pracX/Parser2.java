@@ -30,11 +30,16 @@ public class Parser2 {
      * возвращает null.
      */
     private static Token match(TokenType type) {
+
         if (pos >= tokens.size())
             return null;
+
         Token currentToken = tokens.get(pos);
+        System.out.println(tokens.get(pos).text);
+
         if (currentToken.type != type)
             return null;
+
         pos++;
         return currentToken;
     }
@@ -72,11 +77,7 @@ public class Parser2 {
                 body.add(statement());
             }
 
-            if (((match(TokenType.DONE)) != null)) {
-
-            }
-            else error("loops must end with done");
-        }
+         }
         else error("loops must open with do");
         // todo: для чтения операторов в теле цикла вызываем statement() и добавляем результат в body
         return new WhileNode(left, op, right, body);
@@ -111,14 +112,23 @@ public class Parser2 {
             } else if ((op = match(TokenType.DEC)) != null) {
                 // Это --, возвращаем узел IncDecNode:
                 return new IncDecNode(ident, op, 0);
-            } else {
+            }
+
+            else {
                 error("Expected ++ or --");
             }
-            if ((match(TokenType.END)) != null){
 
-            }
-        } else {
+        }
+        else  if ((match(TokenType.END)) != null){
+
+
+        }
+        else if((match(TokenType.END)) == null){
+
+       }
+        else {
             // Оператор должен начинаться с print, while или идентификатора:
+
             error("Expected 'print', 'while' or ident");
         }
         return null;
