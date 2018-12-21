@@ -7,35 +7,7 @@ import java.util.Map;
 
 public class Test {
 
-    public static void main(String[] args) {
-        /*
-         * while x < 5 do
-         *   print x;
-         *   x--;
-         * done
-         * print x;
-         */
-        List<BaseStatement> program = Arrays.asList(
-                // Первый оператор программы - while ...
-                new WhileNode(
-                        // Условие while: x < 5
-                        new Token("x", TokenType.IDENT), new Token("<", TokenType.LT), new Token("5", TokenType.NUMBER),
-                        // Тело while - из двух операторов:
-                        Arrays.asList(
-                                // Первый оператор тела while - print x:
-                                new IncDecNode(new Token("x", TokenType.IDENT), new Token("--", TokenType.DEC)),
-                                new PrintNode(new Token("x", TokenType.IDENT))
-                                // Второй оператор тела while - x--:
 
-                        )
-                ),
-                // Второй оператор программы - print x:
-                new PrintNode(new Token("x", TokenType.IDENT))
-        );
-        Map<String, Integer> variables = new HashMap<>();
-        variables.put("x", 7);
-        executeStatements(program, variables);
-    }
 
     /**
      * @param variables значения переменных; ключ в Map - имя переменной, значение - значение переменной
