@@ -99,7 +99,7 @@ public class Parser2 {
             if ((variable = match(TokenType.IDENT)) == null)
                 error("Expected variable in print");
             // Возвращаем узел PrintNode:
-            return new PrintNode(variable, 0);
+            return new PrintNode(variable);
         } else if (match(TokenType.WHILE) != null) {
             // Оператор начинается с while - разбираем цикл:
             return loop();
@@ -108,12 +108,11 @@ public class Parser2 {
             Token op;
             if ((op = match(TokenType.INC)) != null) {
                 // Это ++, возвращаем узел IncDecNode:
-                return new IncDecNode(ident, op, 0);
+                return new IncDecNode(ident, op);
             } else if ((op = match(TokenType.DEC)) != null) {
                 // Это --, возвращаем узел IncDecNode:
-                return new IncDecNode(ident, op, 0);
-            }
-
+                return new IncDecNode(ident, op);
+                }
             else {
                 error("Expected ++ or --");
             }

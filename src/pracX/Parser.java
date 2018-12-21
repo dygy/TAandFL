@@ -84,7 +84,7 @@ public class Parser {
                 if (tokens.get(x+1).type.equals(TokenType.IDENT)) {
                     if (tokens.get(x+2).type.equals(TokenType.END)) {
              //           PrintNode.printNode(tokens.get(x + 1));
-                        operations.add(new PrintNode(tokens.get(x+1),open));
+                        operations.add(new PrintNode(tokens.get(x+1)));
                     }
                     else error("Print operation suppose to end with ;");
                 }
@@ -95,7 +95,7 @@ public class Parser {
                 if (tokens.get(x - 1).type.equals(TokenType.IDENT)) {
                     if (tokens.get(x + 1).type.equals(TokenType.END)) {
                 //        IncDecNode.IncDecNode(tokens.get(x - 1), tokens.get(x));
-                        operations.add( new IncDecNode(tokens.get(x-1), tokens.get(x),open));
+                        operations.add( new IncDecNode(tokens.get(x-1), tokens.get(x)));
                     }
                     else error("DEC operation suppose to end with ;");
 
@@ -106,7 +106,7 @@ public class Parser {
                 if (tokens.get(x-1).type.equals(TokenType.IDENT)) {
                     if (tokens.get(x+1).type.equals(TokenType.END)) {
                  //       IncDecNode.IncDecNode(tokens.get(x-1),tokens.get(x));
-                        operations.add( new IncDecNode(tokens.get(x-1), tokens.get(x),open));
+                        operations.add( new IncDecNode(tokens.get(x-1), tokens.get(x)));
                     }
                     else error("INC operation suppose to end with ;");
                 }

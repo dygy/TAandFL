@@ -11,26 +11,21 @@ public class Lexer {
             case 1: return TokenType.WHILE;
             case 2: return TokenType.DONE;
             case 3: return TokenType.DO;
-            case 9: return TokenType.NUMBER;
-            case 4: return TokenType.NUMBER;
-            case 10: return TokenType.IDENT;
-            case 5: return TokenType.IDENT;
-            case 13: return TokenType.IDENT;
-            case 14: return TokenType.IDENT;
-            case 6: return TokenType.GT;
-            case 7: return TokenType.LT;
-            case 8: return TokenType.EQ;
-            case 12: return TokenType.PRINT;
-            case 16: return TokenType.DEC;
-            case 15: return TokenType.INC;
-            case 11: return TokenType.END;
-            case 17: Parser.error("Imposible to understand what you want to do with IDENT");
+            case 4: return TokenType.PRINT;
+            case 5: return TokenType.NUMBER;
+            case 6: return TokenType.IDENT;
+            case 7: return TokenType.GT;
+            case 8: return TokenType.LT;
+            case 9: return TokenType.EQ;
+            case 10: return TokenType.END;
+            case 11: return TokenType.INC;
+            case 12: return TokenType.DEC;
         }
         throw new IllegalStateException();
     }
     List<Token> split(String text) {
 
-        final String regex = "(while)|(done)|(do)|(?:(?:(\\d+)|([a-z]+))\\s*(?:([>])|([<])|([=]))\\s*(?:(\\d+)|([a-z])+))|([;])|(?:(print)\\s*([a-z]*))|([a-z]*)(?:([+]{2})|([-]{2})|([a-z]+))";
+        final String regex = "(while)|(done)|(do)|(print)|(\\d+)|([a-z]+)|([>])|([<])|([=])|([;])|([+]{2})|([-]{2})";
         List<Token> list = new ArrayList<>();
         final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
         final Matcher matcher = pattern.matcher(text);
