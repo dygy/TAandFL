@@ -35,7 +35,6 @@ public class Parser2 {
             return null;
 
         Token currentToken = tokens.get(pos);
-        System.out.println(tokens.get(pos).text);
 
         if (currentToken.type != type)
             return null;
