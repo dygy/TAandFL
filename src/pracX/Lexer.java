@@ -1,6 +1,9 @@
 package pracX;
 
+import prac6.Test;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -61,6 +64,6 @@ public class Lexer {
         }
         Parser2 parser2 = new Parser2(tokens);
         List<BaseStatement> program = parser2.program();
-        Parser2.statement();
+        Test.executeStatements(program, new HashMap<>());
     }
 }

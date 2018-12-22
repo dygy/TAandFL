@@ -134,7 +134,7 @@ public class Parser {
     }
 
     // program : loop+;
-    // loop : 'while' condition 'do' statement 'done'
+    // loop : 'while' condition 'do' statement+ 'done'
     // condition : 'ident' op 'ident' | 'number' op 'ident' | 'ident' op 'number'|'number' op 'number'
     // statement : 'print' 'ident' ';' | 'ident' '++' ';' | 'ident' '--' ';' | loop
     // op : '>' | '<' | '='
